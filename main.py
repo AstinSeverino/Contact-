@@ -2,7 +2,9 @@
 
 
 from calendar import c
-from re import S, T
+from pickle import NONE
+from re import S, T, U
+from tkinter.messagebox import NO
 from unicodedata import name
 
 
@@ -13,12 +15,12 @@ class contact():
     phone_number="12345"
     email="test@example.com"
     
-    def __init__(self,last_name=None, relationship=None, status=None, work=None):
+    def __init__(self):
        
-        self.last_name = last_name
-        self.relationship = relationship
-        self.status =status
-        self.work = work
+        self.last_name = None
+        self.relationship = None
+        self.status = None
+        self.work = None
 
     def create_contact_basic(self):
         print ("Creating contact within contact fields...")
@@ -56,17 +58,18 @@ class contact():
 
 class login(contact):
     
-    def __init__(self, name):
+    def __init__(self, username, password):
         
-        self.username = None
-        self.password = None
+        self.username = username
+        self.password = password
     
-    def create_user(self, username, password):
+    def create_user(self):
         
         print ("Creating user...")
         self.username =input("Enter username: " )
         self.password=input("Enter password: " )
         print ("created user...")
+        self.check_login()
 
     def modified_user(self, username, password):
         
@@ -81,26 +84,41 @@ class login(contact):
             if check_1=="":
                 raise TypeError("Please enter you can enter a blank username")  
 
-    def check_login(self,username, password): 
-        print ("Checking login...")
-        check_3=input("Please enter your username: ")
-        check_2=input("Please enter your passwork: ")
-        if check_3==self.username and check_2==self.password:
-            print ("Checking password...")
-            print("WELLCOME Mr "+ self.name)
-            return True
-        elif check_3!=self.username:
-            print("Your username is incorrect.\n")
-        
-        elif check_2!=self.password:
-            print("Your password is incorrect.\n")
-
-        else:
-            if check_3 and check_2=="":
+    def check_login(self): 
+        x= True
+        while x == True:
+            print ("Checking login...")
+            check_3=input("Please enter your username: ")
+            check_2=input("Please enter your passwork: ")
+            if check_3==self.username and check_2==self.password:
+                print ("Checking password...")
+                print("WELLCOME\n")
+                x=False
+                break
+            elif check_3!=self.username or check_2!=self.password:
+                print("Your username or your password is incorrect.\n")
+                break
+            elif check_3 or check_2=="":
                 raise TypeError("Please enter your username and passwork corretly: ")
 
 
+
+            
+        new_user=input("for created account, please type y (yes) or n (no)")
+        if new_user=="y":
+            self.create_user()
+        else:
+            print("bye bye!")
+        
+        
+        
+        
+    
+
+
 print("Hello to my address book!\n")
+user1=login(username="user1", password="password")
+user1.check_login()
 
 
 if __name__ == '__main__':
