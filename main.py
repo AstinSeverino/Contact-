@@ -27,7 +27,11 @@ class contact():
         self.phone_number = input("Enter a phone number for this contact: ")
         self.email = input("Enter a email address for this contact: ")
         print ("\nCreated contact within contact fields...\n")
-        self.option_process()
+        with open("./data.txt", "w",encoding="utf-8") as file:
+            file.write("%s\n" % self.name)
+            file.write("%s\n" % self.phone_number)
+            file.write("%s\n" % self.email)
+            self.option_process()
 
 
     def create_contact_advanced(self):
