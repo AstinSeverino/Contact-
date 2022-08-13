@@ -4,6 +4,7 @@
 from calendar import c
 from pickle import NONE
 from re import S, T, U
+from sys import setdlopenflags
 from unicodedata import name
 
 
@@ -21,44 +22,69 @@ class contact():
         self.status = None
         self.work = None
 
+    def write(self, name, phone_number, email):
+
+        my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email}
+        with open("./data.txt", "a",encoding="utf-8") as file:
+            file.write("%s\n" % my_dict)
+            file.close()
+    
+    def write_adv(self, name, phone_number, email, last_name, relationship, status, work):
+
+        my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email, "last_name":self.last_name, 
+        "relationship": self.relationship, "status":self.status, "work":self.work}
+        with open("./data.txt", "a",encoding="utf-8") as file:
+            file.write("%s\n" % my_dict)
+            file.close()
+
     def create_contact_basic(self):
         print ("\nCreating contact within contact fields...\n")
         self.name = input("Enter a name for this contact: ")
         self.phone_number = input("Enter a phone number for this contact: ")
         self.email = input("Enter a email address for this contact: ")
         print ("\nCreated contact within contact fields...\n")
-        with open("./data.txt", "w",encoding="utf-8") as file:
-            file.write("%s\n" % self.name)
-            file.write("%s\n" % self.phone_number)
-            file.write("%s\n" % self.email)
-            self.option_process()
+        # my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email}
+        # with open("./data.txt", "a",encoding="utf-8") as file:
+        #     file.write("%s\n" % my_dict)
+            # file.close()
+        self.write(self.name, self.phone_number, self.email)
+        self.option_process()
 
 
     def create_contact_advanced(self):
         print ("\nCreating contact advanced within contact fields...\n")
+        self.name = input("Enter a name for this contact: ")
+        self.phone_number = input("Enter a phone number for this contact: ")
+        self.email = input("Enter a email address for this contact: ")
         self.last_name = input("Enter a last name for this contact: ")
         self.relationship = input("Enter a relationship for this contact: ")
         self.status = input("Enter a status for this contact: ")
         self.work = input("Enter a work for this contact: ")
         print ("\nCreated contact within contact fields...\n")
+        self.write_adv(self.name, self.phone_number, self.email, self.last_name, self.relationship, self.status, self.work)
         self.option_process()
 
 
-    def modification_contact_basic(self):
+    def modification_contact_basic(self):## esto no modifica nada solo escribe
         print ("\nMoving contact into contact fields for modify contact...\n")
         self.name = input("Enter a modified name for this contact: ")
         self.phone_number = input("Enter a modified phone number for this contact: ")
         self.email = input("Enter a modified email address for this contact: ")
         print ("\nModified contact within contact fields...\n")
+        self.write(self.name, self.phone_number, self.email)
         self.option_process()
 
-    def modification_contact_advanced(self):
+    def modification_contact_advanced(self):##esto no modify nada solo escribe
         print ("\nMoving contact into contact advanced for modify contact...\n")
+        self.name = input("Enter a name for this contact: ")
+        self.phone_number = input("Enter a phone number for this contact: ")
+        self.email = input("Enter a email address for this contact: ")
         self.last_name = input("Enter a modified last name for this contact: ")
         self.relationship = input("Enter a relationship: ")
         self.status = input("Enter a modified status for this contact: ")
         self.work = input("Enter a modified work for this contact: ")
         print ("\nModified contact within contact fields...\n")
+        self.write_adv(self.name, self.phone_number, self.email, self.last_name, self.relationship, self.status, self.work)
         self.option_process()
 
     def call_contact(self,name):
