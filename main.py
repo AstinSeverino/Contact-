@@ -22,6 +22,21 @@ class contact():
         self.status = None
         self.work = None
 
+    def find_data(self):    
+        name_tofind = input("Enter a Name to find in your contacts: ")
+        with open("./data.txt", 'r') as file:
+            for line in file:
+                if name_tofind in line:
+                    print(line.strip()) 
+                    break
+# 
+            # for  value in  file.values():
+                # if value== name_tofind:
+                    # print(value)
+                # self.option_process()
+        
+            
+
     def write(self, name, phone_number, email):
 
         my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email}
@@ -43,10 +58,6 @@ class contact():
         self.phone_number = input("Enter a phone number for this contact: ")
         self.email = input("Enter a email address for this contact: ")
         print ("\nCreated contact within contact fields...\n")
-        # my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email}
-        # with open("./data.txt", "a",encoding="utf-8") as file:
-        #     file.write("%s\n" % my_dict)
-            # file.close()
         self.write(self.name, self.phone_number, self.email)
         self.option_process()
 
@@ -103,7 +114,8 @@ class contact():
         3- modify a the contact with basic information
         4- modify a the contact with advanced information
         5- call a contacts
-        6- for exit of system tipe *x*\n""")
+        6- for exit of system tipe *x*
+        7- for find in a contact\n""")
 
         if option1 =="1":
             self.create_contact_basic()
@@ -118,6 +130,9 @@ class contact():
             self.call_contact(calling_for_contact)
         elif option1 =="x":
             exit()
+        elif option1=="7":
+            self.find_data()
+
 
 
     
