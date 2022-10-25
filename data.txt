@@ -1,5 +1,1 @@
-{'name': 'juan maria', 'phone_number': '92032949', 'email': 'Juanmaria@exmaple.com'}
-{'name': 'juan ', 'phone_number': '919329', 'email': 'Juan@example.com'}
-{'name': 'john', 'phone_number': '13292', 'email': 'john@example.com'}
-{'name': 'norelin', 'phone_number': '2542453232', 'email': 'norelin@example.com', 'last_name': 'miller', 'relationship': 'girlfriend', 'status': 'free', 'work': 'no'}
-{'name': 'norelin', 'phone_number': '7897217', 'email': 'Norelin@emsk.com'}
+['name astin phone_number 567890email astin@hbakjn.com']

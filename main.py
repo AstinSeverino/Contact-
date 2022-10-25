@@ -1,6 +1,5 @@
-
-
-
+from cgi import test
+import re  
 from calendar import c
 from pickle import NONE
 from re import S, T, U
@@ -23,33 +22,32 @@ class contact():
         self.work = None
 
     def find_data(self):    
+        test=['name astin phone_number 567890email astin@hbakjn.com']
         name_tofind = input("Enter a Name to find in your contacts: ")
-        with open("./data.txt", 'r') as file:
-            for line in file:
-                if name_tofind in line:
-                    print(line.strip()) 
-                    break
-# 
-            # for  value in  file.values():
-                # if value== name_tofind:
-                    # print(value)
-                # self.option_process()
-        
-            
+        with open("./data.txt", 'r', encoding='utf-8') as file:
+            data = list(file)
+            # data= str(file)
+            # print(data)
+            for i in data:
+                if re.findall(name_tofind,i):
+                    print(i)
+            self.option_process()
 
+                    
+                   
     def write(self, name, phone_number, email):
 
-        my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email}
+        my_list = ["name "+self.name+" phone_number "+ self.phone_number+ " email "+ self.email]
         with open("./data.txt", "a",encoding="utf-8") as file:
-            file.write("%s\n" % my_dict)
+            file.write("%s\n" % my_list)
             file.close()
     
     def write_adv(self, name, phone_number, email, last_name, relationship, status, work):
 
-        my_dict = {"name": self.name,"phone_number": self.phone_number, "email": self.email, "last_name":self.last_name, 
-        "relationship": self.relationship, "status":self.status, "work":self.work}
+        my_list = ["name", self.name,"phone_number", self.phone_number, "email", self.email, "last_name",self.last_name, 
+        "relationship", self.relationship, "status",self.status, "work",self.work]
         with open("./data.txt", "a",encoding="utf-8") as file:
-            file.write("%s\n" % my_dict)
+            file.write("%s\n" % my_list)
             file.close()
 
     def create_contact_basic(self):
